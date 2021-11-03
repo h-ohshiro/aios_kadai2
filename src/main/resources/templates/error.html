@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>エラー画面</title>
+<link th:href="@{/css/layout.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/menu.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<h1 th:text="${status}+''+${error}"></h1>
+	<p th:text="${message}"></p>
+	<p>ログイン画面に戻ってください</p>
+	<form method="post" th:action="@{/logout}">
+		<button class="btn btn-link" type="submit">ログイン画面に戻る</button>
+	</form>
+</body>
+</html>

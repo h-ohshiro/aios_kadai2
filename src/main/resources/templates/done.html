@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>完了画面</title>
+<link th:href="@{/css/layout.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/done.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div th:insert="layout :: pageHeader"></div>
+	<div th:insert="layout :: menu-button"></div>
+
+	<h2>
+		■商品情報<span th:text="${message}"></span>
+	</h2>
+
+	<div class="container">
+		<div class="title"></div>
+		<div class="contents">
+			<div class="content1">
+				<a>商品情報を</a><span th:text="${message}"></span><a>しました。</a>
+			</div>
+			<div class="content2">
+				<a th:href="@{products_search}" class="link_button">戻る</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>商品情報修正画面</title>
+<link th:href="@{/css/layout.css}" rel="stylesheet" />
+<link th:href="@{/css/product.css}" rel="stylesheet" />
+</head>
+<body>
+	<div class="container">
+		<div th:insert="layout :: pageHeader"></div>
+		<div th:insert="layout :: menu-button"></div>
+
+		<h2>■商品情報修正</h2>
+		<form th:action="@{/product_edit}" th:object="${productForm}" method="POST">
+			<div th:insert="form"></div>
+			<input class="button record-button" type="submit" name="update" value="更新" /> <input
+				class="button cancel-button" type="submit" name="back" value="キャンセル" />
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>メニュー画面</title>
+<link th:href="@{/css/layout.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/menu.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div th:insert="layout :: pageHeader"></div>
+	<div class="container">
+		<div class="title">
+			<h2>－Menu－</h2>
+		</div>
+		<div class="contents">
+			<div class="content1">
+				<a th:href="@{products_search}" class="link_button">商品管理</a>
+			</div>
+			<div class="content2">
+				<form role="form" th:action="@{/logout}" method="get">
+					<a th:href="@{/logout}">ログオフ</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

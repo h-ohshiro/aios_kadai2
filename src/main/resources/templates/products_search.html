@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>商品検索画面</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/dialog.js}"></script>
+<link th:href="@{/css/layout.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/css/products_search.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div th:insert="layout :: pageHeader"></div>
+	<div th:insert="layout :: menu-button"></div>
+	<h2 class="content">■商品検索</h2>
+	<div class="container">
+		<form th:action="@{/products_search}" th:object="${keywordForm}" method="POST">
+			<table class="table-text">
+				<!-- エラー出力 -->
+				<ul class="error" th:if="${#fields.hasErrors('*')}">
+					<li th:errors="*{id}"></li>
+					<li th:errors="*{name}"></li>
+					<li th:errors="*{listPriceMin}"></li>
+					<li th:errors="*{listPriceMax}"></li>
+					<li th:errors="*{sellingPriceMin}"></li>
+					<li th:errors="*{sellingPriceMax}"></li>
+					<li th:errors="*{stockMin}"></li>
+					<li th:errors="*{stockMax}"></li>
+				</ul>
+				<!-- 入力フォーム -->
+				<tr>
+					<th>商品ID</th>
+					<td><input type="text" name="id" /></td>
+					<th>商品名</th>
+					<td><input type="text" name="name" /></td>
+				</tr>
+				<tr>
+					<th>定価</th>
+					<td><input type="text" name="listPriceMin" /> 円～<input type="text" name="listPriceMax" /> 円</td>
+					<th>販売価格</th>
+					<td><input type="text" name="sellingPriceMin" /> 円～<input type="text" name="sellingPriceMax" /> 円</td>
+				</tr>
+				<tr>
+					<th>在庫数</th>
+					<td colspan="3"><input type="text" name="stockMin" />～<input type="text" name="stockMax" /></td>
+				</tr>
+			</table>
+			<div class="search">
+				<input class="button search-button" type="submit" name="search" value="検索" />
+			</div>
+			<input class="button" type="submit" name="regist" value="新規登録" />
+		</form>
+
+		<!-- 検索結果 -->
+		<div class="result-wrapper" th:if="${productList}">
+			<!-- 検索結果が0件であれば -->
+			<div th:if="${productList.size() == 0}">
+				<p class="content">■検索結果 該当する商品がありません。</p>
+			</div>
+			<!-- 検索結果が1件以上あればテーブル表示 -->
+			<div th:if="${productList.size() > 0}">
+				<p class="content" th:text="'■検索結果 ' + ${productList.size()} + ' 件が該当しました。'"></p>
+				<table class="search-result">
+					<tr>
+						<th>商品ID</th>
+						<th>商品名</th>
+						<th>定価</th>
+						<th>販売価格</th>
+						<th>販売単位</th>
+						<th>在庫数</th>
+						<th>操作</th>
+					</tr>
+					<tr th:each="product:${productList}">
+						<form th:object="${product}" method="GET">
+							<td class="text-short" th:text="*{id}"></td>
+							<td class="text-long" th:text="*{name}"></td>
+							<td th:text="*{list_price}"></td>
+							<td th:text="*{selling_price}"></td>
+							<td th:text="*{pieces}"></td>
+							<td th:text="*{stock_quantity}"></td>
+							<td class="text-long">
+								<a th:href="@{/product_edit/}+*{id}" id="edit">修正</a>
+								<a th:href="@{/product_delete/}+*{id}" id="delete" onclick="return deleteDialog();">削除</a>
+							</td>
+						</form>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

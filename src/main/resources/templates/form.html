@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+		<div th:fragment="form">
+			<table>
+			<!-- エラー出力 -->
+				<ul class="error" th:if="${#fields.hasErrors('*')}">
+					<li th:errors="*{name}"></li>
+					<li th:errors="*{detail}"></li>
+					<li th:errors="*{image}"></li>
+					<li th:errors="*{listPrice}"></li>
+					<li th:errors="*{sellingPrice}"></li>
+					<li th:errors="*{sellingPieces}"></li>
+					<li th:errors="*{pieces}"></li>
+					<li th:errors="*{stockQuantity}"></li>
+				</ul>
+				
+				<!-- 入力フォーム -->
+				<!-- 新規登録の場合、ID項目は表示しない -->
+				<tr　th:if="${productForm.id != 0}">
+					<th th:text="商品ID"></th>
+					<td class="text-id"><input type="hidden" th:text="*{id}" th:field="*{id}" /></td>
+				</tr>
+				<tr>
+					<th th:text="商品名（必須）"></th>
+					<td><input type="text" class="text-long" th:field="*{name}" /></td>
+				</tr>
+				<tr>
+					<th th:text="商品説明"></th>
+					<td><input type="textarea" class="text-long"
+						th:field="*{detail}" /></td>
+				</tr>
+				<tr>
+					<th th:text="商品画像"></th>
+					<td><input type="text" class="text-long" th:field="*{image}" /></td>
+				</tr>
+				<tr>
+					<th th:text="定価"></th>
+					<td><input type="text" class="text-short"
+						th:field="*{listPrice}" />円</td>
+				</tr>
+				<tr>
+					<th th:text="販売価格（必須）"></th>
+					<td><input type="text" class="text-short"
+						th:field="*{sellingPrice}" />円</td>
+				</tr>
+				<tr>
+					<th th:text="販売単位（必須）"></th>
+					<td><input type="text" class="text-short"
+						th:field="*{sellingPieces}" /></td>
+				</tr>
+				<tr>
+					<th th:text="単位"></th>
+					<td><input type="text" class="text-short" th:field="*{pieces}" /></td>
+				</tr>
+				<tr>
+					<th th:text="在庫数（必須）"></th>
+					<td><input type="text" class="text-short"
+						th:field="*{stockQuantity}" /></td>
+				</tr>
+			</table>
+		</div>
+</body>
+</html>

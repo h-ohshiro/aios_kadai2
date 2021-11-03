@@ -1,0 +1,14 @@
+h1 {
+	font-size: 1em;
+	padding:0.2em;
+	background-color: orange;
+}
+a{
+	font-weight: bold;
+}
+
+.menu-button {
+	text-align: right;
+	
+	padding-right: 1em;
+}

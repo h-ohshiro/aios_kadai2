@@ -1,0 +1,32 @@
+h2 {
+	font-size: 2em;
+}
+
+.container {
+	margin-top: 3em;
+	text-align: center;
+}
+
+.title {
+	font-size: 0.8em;
+	text-align: center;
+}
+
+.contents {
+	text-align: center;
+	height: 15em;
+	width: 20em;
+	margin: auto;
+	margin-top: 4em;
+	border: 4px solid #ff8c00;
+}
+
+.content1 {
+	padding: 3em 3em 4em 3em;
+	margin: 1em;
+	border-bottom: 3px solid #ff8c00;
+}
+
+.content2 {
+	margin-top: 2em;
+}
